@@ -1,9 +1,16 @@
+import { Routes, Route } from "react-router";
+import HomePage from "./pages/HomePage";
+import ContactPage from "./pages/ContactPage";
+import AboutUsPage from "./pages/AboutUsPage";
+
 function App() {
   return (
     <>
-      <h1 className="bg-red-600 text-white text-center text-3xl">
-        Reva Education Consultant
-      </h1>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+      </Routes>
     </>
   );
 }
