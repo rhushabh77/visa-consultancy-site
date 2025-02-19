@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
-import {
-  BookOpen,
-  Phone,
-  Mail,
-  MapPin,
-  ChevronDown,
-  Menu,
-  X,
-} from "lucide-react";
+import { BookOpen, ChevronDown, Menu, X } from "lucide-react";
 import { motion } from "motion/react";
 
 const DURATION = 0.25;
@@ -71,41 +63,6 @@ const Navbar = () => {
 
   return (
     <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-      {/* Top Info Bar */}
-      <div className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white py-2">
-        <div className="container mx-auto px-4 flex flex-wrap justify-between items-center text-sm">
-          <div className="flex items-center space-x-6">
-            <a
-              href="tel:+919876543210"
-              className="flex items-center hover:text-white/80 transition group"
-            >
-              <Phone
-                size={16}
-                className="mr-2 group-hover:scale-110 transition"
-              />
-              +91 98765 43210
-            </a>
-            <a
-              href="mailto:contact@revaeducation.com"
-              className="flex items-center hover:text-white/80 transition group"
-            >
-              <Mail
-                size={16}
-                className="mr-2 group-hover:scale-110 transition"
-              />
-              contact@revaeducation.com
-            </a>
-          </div>
-          <div className="flex items-center hover:text-white/80 transition group">
-            <MapPin
-              size={16}
-              className="mr-2 group-hover:scale-110 transition"
-            />
-            123 Education Street, Bangalore
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
@@ -116,7 +73,7 @@ const Navbar = () => {
               <div className="absolute -inset-2 bg-violet-100 rounded-full opacity-0 group-hover:opacity-100 -z-10 transition duration-300"></div>
             </div>
             <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent group-hover:from-violet-700 group-hover:to-indigo-700 transition duration-300">
-              Reva Education
+              Reva Education Consultant
             </span>
           </Link>
 

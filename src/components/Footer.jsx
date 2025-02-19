@@ -9,7 +9,6 @@ import {
   Instagram,
   Linkedin,
   ArrowRight,
-  Send,
 } from "lucide-react";
 
 const Footer = () => {
@@ -17,38 +16,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-gray-300">
-      {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-violet-600 to-indigo-600">
-        <div className="container mx-auto px-4 py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-white">
-              <h3 className="text-2xl font-bold mb-2">
-                Subscribe to Our Newsletter
-              </h3>
-              <p className="text-white/80">
-                Stay updated with the latest news and opportunities
-              </p>
-            </div>
-            <div className="w-full md:w-auto">
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-white/40 flex-grow md:w-64"
-                />
-                <button
-                  type="submit"
-                  className="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 flex items-center"
-                >
-                  Subscribe
-                  <Send className="w-4 h-4 ml-2" />
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -180,7 +147,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              © {currentYear} Reva Education. All rights reserved.
+              © {currentYear} Reva Education Consultant. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <Link
