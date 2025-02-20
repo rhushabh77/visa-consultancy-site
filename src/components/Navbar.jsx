@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { BookOpen, ChevronDown, Menu, X } from "lucide-react";
 import { motion } from "motion/react";
@@ -60,13 +60,53 @@ const FlipLink = ({ children, to }) => {
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < lastScrollY || currentScrollY < 50) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveMenu(null);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [lastScrollY]);
+
+  const toggleServicesMenu = (e) => {
+    e.preventDefault();
+    setActiveMenu(activeMenu === "services" ? null : "services");
+  };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-      {/* Main Navbar */}
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
+    <motion.nav
+      className="fixed w-full top-0 z-50 px-4"
+      initial={{ y: 0 }}
+      animate={{
+        y: isVisible ? 0 : -100,
+        opacity: isVisible ? 1 : 0,
+      }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="container mx-auto my-4">
+        <div className="flex justify-between items-center bg-white/80 backdrop-blur-md shadow-sm rounded-full px-6 py-4">
           <Link to="/" className="flex items-center group">
             <div className="relative">
               <BookOpen className="h-8 w-8 text-violet-600 group-hover:scale-110 transition duration-300" />
@@ -77,7 +117,6 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -85,45 +124,45 @@ const Navbar = () => {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <FlipLink to="/">Home</FlipLink>
 
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveMenu("services")}
-              onMouseLeave={() => setActiveMenu(null)}
-            >
-              <button className="flex items-center text-gray-700">
-                <FlipLink to="/services">Services</FlipLink>
-                <ChevronDown size={16} className="ml-1" />
-              </button>
-              <div
-                className={`
-                absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl py-3 px-2
-                ${activeMenu === "services" ? "block" : "hidden"}
-                transform transition duration-300
-              `}
+            {/* Modified Services dropdown with click handler */}
+            <div ref={dropdownRef} className="relative">
+              <button
+                onClick={toggleServicesMenu}
+                className="flex items-center text-gray-700 hover:text-violet-600 focus:outline-none"
               >
-                <Link
-                  to="/study-abroad"
-                  className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
-                >
-                  Study Abroad
-                </Link>
-                <Link
-                  to="/career-counseling"
-                  className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
-                >
-                  Career Counseling
-                </Link>
-                <Link
-                  to="/test-prep"
-                  className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
-                >
-                  Test Preparation
-                </Link>
-              </div>
+                Services
+                <ChevronDown
+                  size={16}
+                  className={`ml-1 transition-transform duration-200 ${
+                    activeMenu === "services" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {activeMenu === "services" && (
+                <div className="absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl py-3 px-2 mt-2">
+                  <Link
+                    to="/study-abroad"
+                    className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
+                  >
+                    Study Abroad
+                  </Link>
+                  <Link
+                    to="/career-counseling"
+                    className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
+                  >
+                    Career Counseling
+                  </Link>
+                  <Link
+                    to="/test-prep"
+                    className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
+                  >
+                    Test Preparation
+                  </Link>
+                </div>
+              )}
             </div>
 
             <FlipLink to="/about">About Us</FlipLink>
@@ -138,9 +177,8 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+          <div className="md:hidden mt-4 bg-white/80 backdrop-blur-md shadow-sm rounded-3xl px-6 py-4">
             <div className="flex flex-col space-y-4">
               <Link
                 to="/"
@@ -205,7 +243,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
