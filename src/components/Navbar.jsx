@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
-import { BookOpen, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { motion } from "motion/react";
 
 const DURATION = 0.25;
@@ -109,10 +109,15 @@ const Navbar = () => {
         <div className="flex justify-between items-center bg-white/80 backdrop-blur-md shadow-sm rounded-full px-6 py-4">
           <Link to="/" className="flex items-center group">
             <div className="relative">
-              <BookOpen className="h-8 w-8 text-violet-600 group-hover:scale-110 transition duration-300" />
-              <div className="absolute -inset-2 bg-violet-100 rounded-full opacity-0 group-hover:opacity-100 -z-10 transition duration-300"></div>
+              <img
+                src="/Logo.png"
+                alt=""
+                width="50px"
+                height="50px"
+                className="rounded-full"
+              />
             </div>
-            <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent group-hover:from-violet-700 group-hover:to-indigo-700 transition duration-300">
+            <span className="ml-2 text-2xl font-bold uppercase bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent group-hover:from-violet-700 group-hover:to-indigo-700 transition duration-300">
               Reva Education Consultant
             </span>
           </Link>
@@ -144,7 +149,7 @@ const Navbar = () => {
               {activeMenu === "services" && (
                 <div className="absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl py-3 px-2 mt-2">
                   <Link
-                    to="/study-abroad"
+                    to="/services/study-abroad-programs"
                     className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
                   >
                     Study Abroad

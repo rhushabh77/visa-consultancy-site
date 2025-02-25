@@ -3,12 +3,9 @@ import {
   Users,
   Heart,
   Target,
-  Award,
-  Calendar,
   MapPin,
   Mail,
   Phone,
-  ArrowRight,
   Github,
   Linkedin,
   Twitter,
@@ -158,7 +155,7 @@ const AboutUs = () => {
         <div className="container mx-auto px-4 relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-2xl transform -rotate-6" />
           <img
-            src="/public/heroImage.jpg"
+            src="/heroImage.jpg"
             alt="Team collaboration"
             className="relative rounded-2xl shadow-xl h-[80dvh] w-full object-cover"
           />
