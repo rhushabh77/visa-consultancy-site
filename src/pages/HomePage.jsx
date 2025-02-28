@@ -6,7 +6,7 @@ import {
   Globe2,
   Brain,
   TrendingUp,
-  Play,
+  // Play,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -141,7 +141,7 @@ const HomePage = () => {
                 global education excellence.
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-12">
+              {/* <div className="flex flex-wrap gap-4 mb-12">
                 <Link
                   to="/get-started"
                   className="group bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1"
@@ -156,7 +156,7 @@ const HomePage = () => {
                   <Play className="w-5 h-5 mr-2" />
                   Watch Success Stories
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div className="relative">
@@ -187,7 +187,7 @@ const HomePage = () => {
                 <img
                   src={university.logo}
                   alt={university.name}
-                  className="w-full h-full opacity-80 hover:opacity-100 transition-opacity object-contain"
+                  className="max-w-32 h-32 opacity-80 hover:opacity-100 transition-opacity object-contain"
                 />
               </div>
             ))}
@@ -370,7 +370,7 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <Link
             to="/success-stories"
             className="inline-flex items-center text-violet-600 font-semibold hover:text-violet-700 transition duration-300"
@@ -378,7 +378,7 @@ const HomePage = () => {
             View All Success Stories
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
+        </div> */}
       </section>
 
       {/* Enhanced CTA Section */}
