@@ -12,8 +12,92 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroImage from "/heroImage.jpg";
 import ConsultationForm from "../components/ConsultationForm";
+import HarvardLogo from "@/assets/Harvard_University_logo.png";
+import OxfordLogo from "@/assets/oxford-university-logo.png";
+import MITLogo from "@/assets/MIT-Emblema.png";
+import StanfordLogo from "@/assets/Stanford-Emblem.png";
+import TorontoLogo from "@/assets/University_of_Toronto.png";
+import StuttgartLogo from "@/assets/university-of-stuttgart-logo.png";
 
 const HomePage = () => {
+  // University data with real university images
+  const universities = [
+    { name: "Harvard University", logo: HarvardLogo },
+    { name: "Oxford University", logo: OxfordLogo },
+    { name: "MIT", logo: MITLogo },
+    { name: "Stanford University", logo: StanfordLogo },
+    { name: "University of Toronto", logo: TorontoLogo },
+    {
+      name: "University of Stuttgart",
+      logo: StuttgartLogo,
+    },
+  ];
+
+  // Country data with flagcdn links
+  const countries = [
+    {
+      country: "United States",
+      universities: "1000+ Universities",
+      image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29",
+      flagUrl: "https://flagcdn.com/w320/us.png",
+    },
+    {
+      country: "United Kingdom",
+      universities: "150+ Universities",
+      image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad",
+      flagUrl: "https://flagcdn.com/w320/gb.png",
+    },
+    {
+      country: "Canada",
+      universities: "100+ Universities",
+      image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce",
+      flagUrl: "https://flagcdn.com/w320/ca.png",
+    },
+    {
+      country: "Australia",
+      universities: "43+ Universities",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9",
+      flagUrl: "https://flagcdn.com/w320/au.png",
+    },
+    {
+      country: "Germany",
+      universities: "400+ Universities",
+      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b",
+      flagUrl: "https://flagcdn.com/w320/de.png",
+    },
+    {
+      country: "New Zealand",
+      universities: "8+ Universities",
+      image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad",
+      flagUrl: "https://flagcdn.com/w320/nz.png",
+    },
+  ];
+
+  // Student testimonials with more realistic data
+  const testimonials = [
+    {
+      name: "Sarah Thompson",
+      university: "Harvard University",
+      image: "https://i.imgur.com/8fZGt15.jpg",
+      quote:
+        "The guidance and support I received were invaluable. They helped me achieve my dream of studying at Harvard.",
+    },
+    {
+      name: "Michael Chen",
+      university: "University of Oxford",
+      image: "https://i.imgur.com/7PThRzy.jpg",
+      quote:
+        "From test preparation to visa assistance, every step was made easier with their expert counseling. Highly recommended!",
+    },
+    {
+      name: "Priya Sharma",
+      university: "University of Toronto",
+      image: "https://i.imgur.com/Z7OgujL.jpg",
+      quote:
+        "Their personalized approach to career counseling helped me find the perfect program that aligned with my goals.",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -94,16 +178,16 @@ const HomePage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {universities.map((university, i) => (
               <div
                 key={i}
-                className="bg-gray-50 rounded-xl p-6 flex items-center justify-center"
+                className="bg-gray-50 rounded-xl p-6 flex items-center justify-center hover:shadow-md transition-all duration-300"
               >
                 <img
-                  src="https://placehold.co/120x60"
-                  alt={`University ${i}`}
-                  className="max-w-[120px] opacity-70 hover:opacity-100 transition-opacity"
+                  src={university.logo}
+                  alt={university.name}
+                  className="w-full h-full opacity-80 hover:opacity-100 transition-opacity object-contain"
                 />
               </div>
             ))}
@@ -201,7 +285,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Countries Section */}
+      {/* Countries Section with FlagCDN */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -214,44 +298,7 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                country: "United States",
-                universities: "1000+ Universities",
-                image: "https://placehold.co/400x250",
-                flag: "🇺🇸",
-              },
-              {
-                country: "United Kingdom",
-                universities: "150+ Universities",
-                image: "https://placehold.co/400x250",
-                flag: "🇬🇧",
-              },
-              {
-                country: "Canada",
-                universities: "100+ Universities",
-                image: "https://placehold.co/400x250",
-                flag: "🇨🇦",
-              },
-              {
-                country: "Australia",
-                universities: "43+ Universities",
-                image: "https://placehold.co/400x250",
-                flag: "🇦🇺",
-              },
-              {
-                country: "Germany",
-                universities: "400+ Universities",
-                image: "https://placehold.co/400x250",
-                flag: "🇩🇪",
-              },
-              {
-                country: "New Zealand",
-                universities: "8+ Universities",
-                image: "https://placehold.co/400x250",
-                flag: "🇳🇿",
-              },
-            ].map((country, index) => (
+            {countries.map((country, index) => (
               <Link
                 key={index}
                 to={`/country/${country.country
@@ -266,8 +313,13 @@ const HomePage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2 flex items-center">
-                    {country.flag} {country.country}
+                  <h3 className="text-2xl font-bold mb-2 flex items-center gap-3">
+                    <img
+                      src={country.flagUrl}
+                      alt={`${country.country} flag`}
+                      className="w-8 h-auto rounded-sm"
+                    />
+                    {country.country}
                   </h3>
                   <p className="text-gray-300">{country.universities}</p>
                 </div>
@@ -290,22 +342,24 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-3xl p-8 shadow-lg">
+            {testimonials.map((testimonial, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
                 <div className="flex items-center mb-6">
                   <img
-                    src={`https://placehold.co/64x64`}
-                    alt={`Student ${i}`}
-                    className="w-16 h-16 rounded-full mr-4"
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full mr-4 object-cover"
                   />
                   <div>
-                    <h3 className="font-bold text-lg">Sarah Thompson</h3>
-                    <p className="text-gray-600">Harvard University</p>
+                    <h3 className="font-bold text-lg">{testimonial.name}</h3>
+                    <p className="text-gray-600">{testimonial.university}</p>
                   </div>
                 </div>
                 <p className="text-gray-600 mb-6">
-                  &quot;The guidance and support I received were invaluable.
-                  They helped me achieve my dream of studying at Harvard.&quot;
+                  &quot;{testimonial.quote}&quot;
                 </p>
                 <div className="flex items-center text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (

@@ -117,7 +117,7 @@ const Navbar = () => {
                 className="rounded-full"
               />
             </div>
-            <span className="ml-2 text-2xl font-bold uppercase bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent group-hover:from-violet-700 group-hover:to-indigo-700 transition duration-300">
+            <span className="ml-2 text-2xl font-medium uppercase bg-gradient-to-r from-violet-800 to-indigo-800 bg-clip-text text-transparent group-hover:from-violet-900 group-hover:to-indigo-900 transition duration-300">
               Reva Education Consultant
             </span>
           </Link>
@@ -155,7 +155,7 @@ const Navbar = () => {
                     Study Abroad
                   </Link>
                   <Link
-                    to="/career-counseling"
+                    to="/services/career-counseling"
                     className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
                   >
                     Career Counseling
@@ -170,7 +170,7 @@ const Navbar = () => {
               )}
             </div>
 
-            <FlipLink to="/about">About Us</FlipLink>
+            <FlipLink to="/about">About</FlipLink>
             <FlipLink to="/contact">Contact</FlipLink>
 
             <Link

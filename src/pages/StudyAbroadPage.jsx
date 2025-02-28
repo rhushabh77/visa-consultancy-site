@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Info,
-  Globe,
   FileText,
   Plane,
   BookOpen,
-  Award,
   Check,
   MapPin,
   Mail,
@@ -23,6 +21,44 @@ const StudyAbroadPage = () => {
     testimonials: false,
     whyChoose: false,
   });
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    destination: "",
+  });
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission to WhatsApp
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Format the message for WhatsApp
+    const message = `New Consultation Request:
+Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Preferred Destination: ${formData.destination}`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Replace with your actual WhatsApp business number
+    const whatsappNumber = "919876543210"; // Format: country code + number
+
+    // Create WhatsApp link and open in new tab
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -65,9 +101,13 @@ const StudyAbroadPage = () => {
   return (
     <div className="flex flex-col bg-gradient-to-b from-blue-50 via-white to-indigo-50">
       <Navbar />
-      {/* Hero Section */}
+      {/* Hero Section with actual background image */}
       <section className="bg-gradient-to-r from-indigo-900 via-blue-800 to-blue-900 text-white py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] opacity-20 bg-center bg-cover"></div>
+        {/* Background image - replace placeholder with actual image URL in production */}
+        <div
+          className="absolute inset-0 bg-center bg-cover opacity-30"
+          style={{ backgroundImage: "url('/heroImage.jpg')" }}
+        ></div>
         <div className="absolute inset-0 bg-blue-900 opacity-60"></div>
 
         {/* Decorative Elements */}
@@ -209,18 +249,6 @@ const StudyAbroadPage = () => {
                   {service.title}
                 </h3>
                 <p className="text-gray-600">{service.desc}</p>
-                {/* <div className="mt-6 pt-4 border-t border-gray-100">
-                  <a
-                    href="#"
-                    className="inline-flex items-center text-blue-600 font-medium group-hover:text-indigo-600 transition-colors"
-                  >
-                    Learn more{" "}
-                    <ChevronRight
-                      size={16}
-                      className="ml-1 group-hover:translate-x-1 transition-transform"
-                    />
-                  </a>
-                </div> */}
               </div>
             ))}
           </div>
@@ -258,12 +286,15 @@ const StudyAbroadPage = () => {
             }`}
           >
             {[
-              { name: "USA", flag: "🇺🇸" },
-              { name: "UK", flag: "🇬🇧" },
-              { name: "Canada", flag: "🇨🇦" },
-              { name: "Australia", flag: "🇦🇺" },
-              { name: "Germany", flag: "🇩🇪" },
-              { name: "New Zealand", flag: "🇳🇿" },
+              { name: "USA", flagUrl: "https://flagcdn.com/w80/us.png" },
+              { name: "UK", flagUrl: "https://flagcdn.com/w80/gb.png" },
+              { name: "Canada", flagUrl: "https://flagcdn.com/w80/ca.png" },
+              { name: "Australia", flagUrl: "https://flagcdn.com/w80/au.png" },
+              { name: "Germany", flagUrl: "https://flagcdn.com/w80/de.png" },
+              {
+                name: "New Zealand",
+                flagUrl: "https://flagcdn.com/w80/nz.png",
+              },
             ].map((country, index) => (
               <div
                 key={index}
@@ -271,8 +302,12 @@ const StudyAbroadPage = () => {
               >
                 <div className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-4">
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-blue-100 rounded-full transform group-hover:scale-110 transition-transform duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-3xl md:text-4xl">
-                    {country.flag}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src={country.flagUrl}
+                      alt={`${country.name} flag`}
+                      className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-sm"
+                    />
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold text-indigo-900 group-hover:text-indigo-700 transition-colors">
@@ -411,27 +446,32 @@ const StudyAbroadPage = () => {
                 name: "Rahul Sharma",
                 univ: "University of Toronto",
                 text: "Reva Education made my dream of studying in Canada come true. Their guidance throughout the process was invaluable.",
-                flag: "🇨🇦",
+                flagUrl: "https://flagcdn.com/w80/ca.png",
               },
               {
                 name: "Priya Patel",
                 univ: "University of Melbourne",
                 text: "The visa assistance provided by Reva was exceptional. They prepared me thoroughly for the interview and handled all documentation.",
-                flag: "🇦🇺",
+                flagUrl: "https://flagcdn.com/w80/au.png",
               },
               {
                 name: "Aditya Singh",
                 univ: "University of Manchester",
                 text: "From university selection to pre-departure guidance, Reva's team was professional and supportive at every step.",
-                flag: "🇬🇧",
+                flagUrl: "https://flagcdn.com/w80/gb.png",
               },
             ].map((testimonial, index) => (
               <div
                 key={index}
                 className="bg-gradient-to-b from-white to-blue-50 p-6 md:p-8 rounded-xl shadow-lg relative transform transition duration-500 hover:shadow-2xl hover:-translate-y-1"
               >
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 py-1 px-4 rounded-bl-lg rounded-tr-lg font-medium flex items-center gap-1">
-                  {testimonial.flag} {testimonial.univ}
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 py-1 px-4 rounded-bl-lg rounded-tr-lg font-medium flex items-center gap-2">
+                  <img
+                    src={testimonial.flagUrl}
+                    alt="Country flag"
+                    className="w-5 h-5 object-contain"
+                  />
+                  {testimonial.univ}
                 </div>
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center mr-4 text-white font-bold text-xl shadow-md">
@@ -444,7 +484,7 @@ const StudyAbroadPage = () => {
                   </div>
                 </div>
                 <p className="text-gray-600 italic mb-4">
-                  "{testimonial.text}"
+                  &quot;{testimonial.text}&quot;
                 </p>
                 <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
                   <div className="flex">
@@ -547,7 +587,7 @@ const StudyAbroadPage = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section with WhatsApp Integration */}
       <section className="py-20 md:py-28 bg-gradient-to-r from-indigo-900 via-blue-800 to-indigo-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] opacity-10 bg-center bg-cover"></div>
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
@@ -589,7 +629,7 @@ const StudyAbroadPage = () => {
                 <div className="bg-white/20 p-3 rounded-full mr-4">
                   <Phone size={18} />
                 </div>
-                <p>+91 9876543210</p>
+                <p>+91 1234567890</p>
               </div>
             </div>
 
@@ -597,15 +637,19 @@ const StudyAbroadPage = () => {
               <h3 className="text-xl md:text-2xl font-bold mb-6 text-indigo-800 border-b border-indigo-100 pb-4">
                 Book a Free Consultation
               </h3>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium">
                     Full Name
                   </label>
                   <input
                     type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 outline-none transition duration-300"
                     placeholder="Your name"
+                    required
                   />
                 </div>
                 <div>
@@ -614,8 +658,12 @@ const StudyAbroadPage = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 outline-none transition duration-300"
                     placeholder="your@email.com"
+                    required
                   />
                 </div>
                 <div>
@@ -624,26 +672,39 @@ const StudyAbroadPage = () => {
                   </label>
                   <input
                     type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 outline-none transition duration-300"
                     placeholder="+91 1234567890"
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium">
                     Preferred Destination
                   </label>
-                  <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 outline-none transition duration-300">
-                    <option>Select a country</option>
-                    <option>USA</option>
-                    <option>UK</option>
-                    <option>Canada</option>
-                    <option>Australia</option>
-                    <option>Germany</option>
-                    <option>New Zealand</option>
-                    <option>Other</option>
+                  <select
+                    name="destination"
+                    value={formData.destination}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 outline-none transition duration-300"
+                    required
+                  >
+                    <option value="">Select a country</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
-                <button className="w-full bg-gradient-to-r from-indigo-600 to-blue-700 hover:from-indigo-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-lg transform hover:translate-y-0 hover:shadow-xl">
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-indigo-600 to-blue-700 hover:from-indigo-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-lg transform hover:translate-y-0 hover:shadow-xl"
+                >
                   Submit
                 </button>
               </form>

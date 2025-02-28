@@ -4,6 +4,8 @@ import ContactPage from "./pages/ContactPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import TestPrepPage from "./pages/TestPrepPage";
 import StudyAbroadPage from "./pages/StudyAbroadPage";
+import CareerCounselingPage from "./pages/CareerCounselingPage";
+import FinancialLoanSupportPage from "./pages/FinancialLoanSupportPage";
 
 function App() {
   return (
@@ -17,7 +19,12 @@ function App() {
           path="/services/study-abroad-programs"
           element={<StudyAbroadPage />}
         />
+        <Route
+          path="/services/career-counseling"
+          element={<CareerCounselingPage />}
+        />
         <Route path="/test-prep" element={<TestPrepPage />} />
+        <Route path="/loan" element={<FinancialLoanSupportPage />} />
       </Routes>
     </>
   );
