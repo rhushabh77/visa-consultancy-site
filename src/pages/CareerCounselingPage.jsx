@@ -371,7 +371,7 @@ const CareerCounselingPage = () => {
         </motion.section>
 
         {/* Testimonials */}
-        <motion.section
+        {/* <motion.section
           className="max-w-7xl mx-auto mb-20"
           variants={containerVariants}
           initial="hidden"
@@ -429,7 +429,7 @@ const CareerCounselingPage = () => {
               </motion.div>
             ))}
           </div>
-        </motion.section>
+        </motion.section> */}
 
         {/* Counseling Form */}
         <motion.section

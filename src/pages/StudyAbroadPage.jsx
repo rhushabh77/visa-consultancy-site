@@ -106,7 +106,7 @@ Preferred Destination: ${formData.destination}`;
         {/* Background image - replace placeholder with actual image URL in production */}
         <div
           className="absolute inset-0 bg-center bg-cover opacity-30"
-          style={{ backgroundImage: "url('/heroImage.jpg')" }}
+          style={{ backgroundImage: "url('/hero2.jpg')" }}
         ></div>
         <div className="absolute inset-0 bg-blue-900 opacity-60"></div>
 
@@ -130,16 +130,22 @@ Preferred Destination: ${formData.destination}`;
                 processing
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-indigo-900 font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 hover:shadow-yellow-300/20">
+                <a
+                  href="#studyAbroadForm"
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-indigo-900 font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 hover:shadow-yellow-300/20"
+                >
                   Book a Free Consultation
-                </button>
-                <button className="bg-transparent hover:bg-white/10 text-white border-2 border-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center gap-2 group">
+                </a>
+                <a
+                  href="#process"
+                  className="bg-transparent hover:bg-white/10 text-white border-2 border-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center gap-2 group"
+                >
                   Learn More{" "}
                   <ChevronRight
                     size={18}
                     className="group-hover:translate-x-1 transition-transform"
                   />
-                </button>
+                </a>
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center mt-8 md:mt-0">
@@ -150,11 +156,11 @@ Preferred Destination: ${formData.destination}`;
 
                 <div className="relative bg-gradient-to-tr from-white to-blue-50 p-3 rounded-xl shadow-2xl rotate-2 transform hover:rotate-0 transition duration-500">
                   <img
-                    src="/api/placeholder/550/350"
+                    src="/hero2.jpg"
                     alt="Students studying abroad"
                     className="rounded-lg"
                   />
-                  <div className="absolute -bottom-6 -right-6 bg-white py-2 px-4 rounded-lg shadow-lg">
+                  {/* <div className="absolute -bottom-6 -right-6 bg-white py-2 px-4 rounded-lg shadow-lg">
                     <div className="flex items-center gap-2">
                       <div className="flex -space-x-2">
                         <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-white text-xs font-medium">
@@ -171,7 +177,7 @@ Preferred Destination: ${formData.destination}`;
                         10,000+ Students
                       </span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -634,7 +640,10 @@ Preferred Destination: ${formData.destination}`;
             </div>
 
             <div className="bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl md:w-1/3 transform transition duration-500 hover:shadow-2xl">
-              <h3 className="text-xl md:text-2xl font-bold mb-6 text-indigo-800 border-b border-indigo-100 pb-4">
+              <h3
+                className="text-xl md:text-2xl font-bold mb-6 text-indigo-800 border-b border-indigo-100 pb-4"
+                id="studyAbroadForm"
+              >
                 Book a Free Consultation
               </h3>
               <form className="space-y-4" onSubmit={handleSubmit}>

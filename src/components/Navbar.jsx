@@ -161,10 +161,16 @@ const Navbar = () => {
                     Career Counseling
                   </Link>
                   <Link
-                    to="/test-prep"
+                    to="/services/test-preparation"
                     className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
                   >
                     Test Preparation
+                  </Link>
+                  <Link
+                    to="/services/financial-loan-support"
+                    className="block px-4 py-2 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition duration-200"
+                  >
+                    Financial Loan Support
                   </Link>
                 </div>
               )}
@@ -173,12 +179,12 @@ const Navbar = () => {
             <FlipLink to="/about">About</FlipLink>
             <FlipLink to="/contact">Contact</FlipLink>
 
-            <Link
+            {/* <Link
               to="/contact"
               className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-6 py-2.5 rounded-full hover:from-violet-700 hover:to-indigo-700 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               Get Started
-            </Link>
+            </Link> */}
           </div>
         </div>
 

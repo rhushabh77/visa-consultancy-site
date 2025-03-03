@@ -84,7 +84,7 @@ const TeamMember = ({ name, role, image, bio, socials }) => {
         }`}
       />
       <div
-        className={`absolute inset-x-0 bottom-0 p-6 text-white transform transition-all duration-500 ${
+        className={`absolute inset-x-0 bottom-0 p-6 pb-10 text-white transform transition-all duration-500 ${
           isHovered ? "translate-y-0" : "translate-y-20"
         }`}
       >
@@ -96,6 +96,7 @@ const TeamMember = ({ name, role, image, bio, socials }) => {
             <a
               key={index}
               href={social.url}
+              target="_blank"
               className="text-white hover:text-blue-400 transition-colors"
             >
               {social.icon}
@@ -155,7 +156,7 @@ const AboutUs = () => {
         <div className="container mx-auto px-4 relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-2xl transform -rotate-6" />
           <img
-            src="/heroImage.jpg"
+            src="/reva-about-hero.png"
             alt="Team collaboration"
             className="relative rounded-2xl shadow-xl h-[80dvh] w-full object-cover"
           />
@@ -203,7 +204,7 @@ const AboutUs = () => {
           <div className="max-w-2xl mx-auto">
             {[
               {
-                year: "2015",
+                year: "2016",
                 title: "The Beginning",
                 description:
                   "Started with a small team of 5 passionate educators.",
@@ -243,13 +244,17 @@ const AboutUs = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Johnson",
+                name: "Atul Patel",
                 role: "Founder & CEO",
-                image: "/api/placeholder/400/400",
-                bio: "Former professor with 15+ years of experience in international education.",
+                image:
+                  "https://media.licdn.com/dms/image/v2/C4D03AQHWWL3rFUNuVQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1594372498884?e=2147483647&v=beta&t=9Cv1AhqHtkEwnYqoXCRmv4SVeUI4QdIDok6NsiRDy7U",
+                // bio: "Former professor with 15+ years of experience in international education.",
                 socials: [
-                  { icon: <Linkedin size={20} />, url: "#" },
-                  { icon: <Twitter size={20} />, url: "#" },
+                  {
+                    icon: <Linkedin size={20} />,
+                    url: "https://in.linkedin.com/in/atul-patel-1b6a3023",
+                  },
+                  // { icon: <Twitter size={20} />, url: "#" },
                 ],
               },
               {
